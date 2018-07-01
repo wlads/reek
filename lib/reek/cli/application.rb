@@ -27,6 +27,7 @@ module Reek
       end
 
       def execute
+        show_configuration_path
         command.execute
       end
 
@@ -46,6 +47,13 @@ module Reek
       rescue Errors::ConfigFileError => error
         warn "Error: #{error}"
         exit Status::DEFAULT_ERROR_EXIT_CODE
+      end
+
+      def show_configuration_path
+        if options.show_configuration_path
+          path = configuration[:path]
+          path ? puts "Using configuration file #{path}" : puts "No configuration file given, using defaults"
+        end
       end
 
       def command_class

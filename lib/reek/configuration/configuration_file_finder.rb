@@ -42,6 +42,8 @@ module Reek
         #
         # @quality :reek:ControlParameter
         def find(path: nil, current: Pathname.pwd, home: Pathname.new(Dir.home))
+          # TODO: Here we need to return the configuration path as well, that means changing find_by_dir and find_in_dir
+          # as well.
           path || find_by_dir(current) || find_in_dir(home)
         end
 

@@ -32,21 +32,23 @@ module Reek
                     :success_exit_code,
                     :failure_exit_code,
                     :generate_todo_list,
-                    :force_exclusion
+                    :force_exclusion,
+                    :show_configuration_path
 
       def initialize(argv = [])
-        @argv               = argv
-        @parser             = OptionParser.new
-        @report_format      = :text
-        @location_format    = :numbers
-        @progress_format    = tty_output? ? :dots : :quiet
-        @show_links         = true
-        @smells_to_detect   = []
-        @colored            = tty_output?
-        @success_exit_code  = Status::DEFAULT_SUCCESS_EXIT_CODE
-        @failure_exit_code  = Status::DEFAULT_FAILURE_EXIT_CODE
-        @generate_todo_list = false
-        @force_exclusion    = false
+        @argv                    = argv
+        @parser                  = OptionParser.new
+        @report_format           = :text
+        @location_format         = :numbers
+        @progress_format         = tty_output? ? :dots : :quiet
+        @show_links              = true
+        @smells_to_detect        = []
+        @colored                 = tty_output?
+        @success_exit_code       = Status::DEFAULT_SUCCESS_EXIT_CODE
+        @failure_exit_code       = Status::DEFAULT_FAILURE_EXIT_CODE
+        @generate_todo_list      = false
+        @force_exclusion         = false
+        @show_configuration_path = true
 
         set_up_parser
       end
@@ -161,6 +163,10 @@ module Reek
         parser.on('-U', '--[no-]documentation',
                   'Show link to related documentation page for each smell (default: true)') do |show_links|
           self.show_links = show_links
+        end
+        parser.on(nil, '--[no-]show-configuration-path',
+                  'Show the path for the configuration file Reek is using (default: true)') do |show_empty|
+          self.show_configuration_path = show_configuration_path
         end
       end
 

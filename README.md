@@ -355,8 +355,18 @@ All options that go beyond the [Basic Smell Options](docs/Basic-Smell-Options.md
 are documented in the corresponding smell type /docs page (if you want to get a quick overview over all possible
 configurations you can also check out [the `docs/default.reek` file in this repository](docs/defaults.reek).
 
-Note that you do not need a configuration file at all.
-If you're fine with all the [defaults](docs/defaults.reek) we set you can skip this completely.
+Note that you do not need a configuration file at all - if you're fine with all the
+[defaults](docs/defaults.reek) we set you can skip this completely.
+
+#### Debugging trouble with the configuration
+
+Given Reeks dynamic mechanism of finding a configuration file you might run into a situation where you are not
+100% sure what configuration file Reek is using. E.g. you have a project specific configuration file in your
+project root and also another Reek configuration in your HOME directory that you use for all your other projects
+and for whatever reasons Reek seems to be using another configuration file that you assumed it would.
+
+In this case you can pass the flag `--show-configuration-path` to Reek which will cause Reek to show ???
+TODO: Does this even make sense? Why not show it by default? It's just one line that's very helpful.
 
 ### Generating a 'todo' list
 
